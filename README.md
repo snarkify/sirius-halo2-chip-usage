@@ -1,10 +1,14 @@
-# Sirius Quickstart
+# Sirius Halo2 ChipUsage
 
-Welcome to the `sirius-quickstart` repository, a minimal example to get you started with the [**Sirius**](https://github.com/snarkify/sirius/) framework for Incrementally Verifiable Computation (IVC).
+Welcome to the `sirius-halo2-chip-usage` repository, a minimal example to get you started with the [**Sirius**](https://github.com/snarkify/sirius/) framework for Incrementally Verifiable Computation (IVC).
 
 ## Introduction
 
-This repository provides a simple, runnable example to demonstrate the basic usage of the Sirius framework. The example implements a trivial `StepCircuit` that performs identity mapping (i.e., it outputs the input unchanged) over multiple folding steps. This example is intended to help developers understand the core concepts and API of Sirius.
+This repository provides a simple, runnable example to demonstrate how easily `halo2` chips can be integrated into the Sirius framework. Specifically, we show how to reuse an existing `ShuffleChip` example from the `halo2` repository and modify it for use within Sirius.
+
+The `ShuffleChip` code in this example is taken from the `halo2_proofs` examples ([`shuffle_api.rs`](https://github.com/snarkify/halo2/blob/snarkify/dev.scroll.alpha.2/halo2_proofs/examples/shuffle_api.rs)). It has been slightly modified to fit into the Sirius framework, mainly by making certain fields public and adapting it to the Sirius proof system. It was only copied because it's not exported from the `halo2_proofs` crate.
+
+This example serves as a starting point for developers who want to leverage the power of `halo2` chips in their Sirius-based projects, showing how simple it is to adapt existing `halo2` chips for use in different cryptographic frameworks.
 
 ## Prerequisites
 
@@ -25,11 +29,11 @@ rustup update
 ```
 
 ### 2. Clone the Repository
-Clone the sirius-quickstart repository to your local machine:
+Clone the sirius-halo2-chip-usage repository to your local machine:
 
 ```bash
-git clone https://github.com/your-username/sirius-quickstart.git;
-cd sirius-quickstart
+git clone https://github.com/snarkify/sirius-halo2-chip-usage.git;
+cd sirius-halo2-chip-usage;
 ```
 
 ## Project Structure
@@ -78,11 +82,12 @@ success
 ## Understanding the Example
 This example demonstrates the following key concepts of the Sirius framework:
 
+- ShuffleChip: A custom chip implementation that handles the shuffle logic using Halo2, copied and adapted from the halo2_proofs repository's examples.
 - StepCircuit: A trait representing the circuit for each step in the IVC. In this example, the circuit performs an identity operation.
 - Commitment Keys: Setup for the primary and secondary circuits, using BN256 and Grumpkin elliptic curves.
 - Folding Steps: Execution of multiple folding steps, each represented by an invocation of the fold_step function.
 
-For more detailed explanations, please refer to the main [Sirius documentation](https://docs.snarkify.io/sirius-folding/quickstart).
+For more detailed explanations, please refer to the main [Sirius documentation](https://docs.snarkify.io/sirius-folding/examples/fold-a-halo2-circuit).
 
 ## Next Steps
 After understanding this basic example, you can explore more complex examples and customize your circuits:
